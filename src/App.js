@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 
 import MoviesList from "./components/MoviesList";
 import "./App.css";
@@ -46,6 +46,11 @@ function App() {
     });
     setMovies(transformedMovies);
   }, []);
+
+  useEffect(() => {
+    fetchMoviesHandler();
+  }, [fetchMoviesHandler]);
+
   let content = <p>Found no movies.</p>;
   if (movies.length > 0) {
     content = <MoviesList movies={movies} />;
